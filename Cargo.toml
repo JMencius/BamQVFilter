@@ -1,0 +1,12 @@
+[package]
+name = "bamqvfilter"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.2.1", features = ["derive"] }
+rust-htslib = "0.46.0"
+rayon = "1.5"
+crossbeam = "0.8"
