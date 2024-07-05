@@ -1,4 +1,5 @@
-# Usage
+# BamQVFilter
+## Usage
 ```
 Filters BAM files based on read quality values.
 Options:
