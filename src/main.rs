@@ -2,7 +2,6 @@ use clap::Parser;
 use rust_htslib::bam::{self, Read};
 use rust_htslib::bam::record::Record;
 use rayon::prelude::*;
-// use std::sync::mpsc::{channel, Sender, Receiver};
 use std::sync::{Arc, Mutex};
 use std::thread;
 use crossbeam::channel::{Sender, unbounded};
@@ -102,7 +101,7 @@ fn average_quality(quals: &[u8]) -> f64 {
     let probability_sum = quals
         .iter()
         .map(|&q| {
-            let q = q as f64;  // 先转换为 i32 再转为 f64，避免溢出
+            let q = q as f64;
             10_f64.powf(q / -10.0)
         })
         .sum::<f64>();
