@@ -1,4 +1,8 @@
 # BamQVFilter
+## Installation
+Download a ready-to-use binary from the release
+You may have to change the file permissions to execute it with `chmod +x bamqvfilter`.
+
 ## Usage
 ```
 Filters BAM files based on read quality values.
