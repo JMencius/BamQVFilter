@@ -22,6 +22,13 @@ example:
 bamqvfilter -i input.bam -t 24 -q 10 -o output.bam;
 ```
 
+If you encounter `bamqvfilter: command not found` on Ubuntu or Debian, try:
+```
+./bamqvfilter -i input.bam -t 24 -q 10 -o output.bam;
+```
+
+
+
 
 ## Known limitation
 Non primary reads (example below, without sequence and QV) will also be filtered.
