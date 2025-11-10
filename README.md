@@ -28,8 +28,6 @@ If you encounter `bamqvfilter: command not found` on Ubuntu or Debian, try:
 ```
 
 
-
-
 ## Known limitation
 1. Non-primary reads (example below, without sequence and QV) will also be filtered.
 ```
@@ -49,3 +47,7 @@ pip install pysam;
 # validate BamQVFilter
 python min_qv.py test.bam;
 ```
+
+## Citation
+Just cite the website of this repository. No plan for formal publication.
+
