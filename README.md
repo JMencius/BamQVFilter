@@ -50,6 +50,8 @@ python min_qv.py test.bam;
 
 ## Citation
 `BamQVFilter` is a tool developed for my own convenience during my research [LongBow](https://github.com/JMencius/LongBow), so if you want to cite `BamQVFilter`, please cite:
+
+
 Mencius, J., Chen, W., Zheng, Y. et al. Restoring flowcell type and basecaller configuration from FASTQ files of nanopore sequencing data. Nat Commun 16, 4102 (2025). 
 
 <https://doi.org/10.1038/s41467-025-59378-x>
