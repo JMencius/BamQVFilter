@@ -35,6 +35,8 @@ If you encounter `bamqvfilter: command not found` on Ubuntu or Debian, try:
 ```
 2. Only tested on ONT data, but in theory compatible with other sequencing platforms, such as PacBio sequencing.
 
+3. For large BAM file, large memory usage is expect, so make sure you have 1.5 * $(BAM_SIZE) memory to run `BamQVFilter`
+
 
 ## Validation script
 This tool is validated by a single-thread Python script in [here](./min_qv.py) using `pysam`. The validation script calculates the minimum read QV of a given BAM file and outputs the value to Standard output.
