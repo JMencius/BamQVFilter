@@ -5,6 +5,11 @@ Download a ready-to-use binary from the release [here](https://github.com/JMenci
 
 You may have to change the file permissions to execute it with `chmod +x bamqvfilter`.
 
+Test installation
+```
+./bamqvfilter --help
+```
+
 ## Usage
 ```
 Filters BAM files based on read quality values.
@@ -22,10 +27,6 @@ example:
 bamqvfilter -i input.bam -t 24 -q 10 -o output.bam;
 ```
 
-If you encounter `bamqvfilter: command not found` on Ubuntu or Debian, try:
-```
-./bamqvfilter -i input.bam -t 24 -q 10 -o output.bam;
-```
 
 
 ## Known limitation
