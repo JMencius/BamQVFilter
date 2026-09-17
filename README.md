@@ -1,8 +1,7 @@
 # BamQVFilter
 ## Installation
 ### Option1. Pre-built binary
-Pre-built binaries for the earlier v0.1.0 release are available
-[here](https://github.com/JMencius/BamQVFilter/releases/tag/0.2.0).
+Pre-built binarie is available [here](https://github.com/JMencius/BamQVFilter/releases/latest).
 
 You may have to change the file permissions to execute it with `chmod +x bamqvfilter`.
 
