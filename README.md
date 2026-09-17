@@ -14,6 +14,10 @@ cargo build --release
 ./target/release/bamqvfilter --help
 ```
 
+## Performance
+In internal testing, `BamQVFilter` processed a **119 GB BAM** file in under **25 minutes** using 24 threads on a system equipped with an AMD EPYC 7K62 CPU and a SATA SSD.
+
+Actual performance may vary depending on CPU performance, memory bandwidth, and storage I/O speed.
 
 ## Usage
 ```
