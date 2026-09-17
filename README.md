@@ -1,54 +1,69 @@
 # BamQVFilter
 ## Installation
-Download a ready-to-use binary from the release [here](https://github.com/JMencius/BamQVFilter/releases/tag/0.1.0)
-
+### Option1. Pre-built binary
+Pre-built binaries for the earlier v0.1.0 release are available
+[here](https://github.com/JMencius/BamQVFilter/releases/tag/0.2.0).
 
 You may have to change the file permissions to execute it with `chmod +x bamqvfilter`.
 
-Test installation
+### Option2. Build from source
+```bash
+git clone https://github.com/JMencius/BamQVFilter
+cd BamQVFilter
+cargo build --release
+./target/release/bamqvfilter --help
 ```
-./bamqvfilter --help
-```
+
 
 ## Usage
 ```
-Filters BAM files based on read quality values.
+Usage: bamqvfilter [OPTIONS] --quality <QUALITY> --input <INPUT> --output <OUTPUT>
+
 Options:
-  -q, --quality <QUALITY>  Sets a minimum Phred average quality score
-  -t, --threads <THREADS>  Use N parallel threads [default: 4]
-  -i, --input <INPUT>      Input filename
-  -o, --output <OUTPUT>    Output filename
-  -h, --help               Print help
-  -V, --version            Print version
+  -q, --quality <QUALITY>
+          Sets a minimum Phred average quality score
+  -t, --threads <THREADS>
+          Worker-pool budget: QV workers plus extra BAM compression workers [default: 4]
+      --compression-thread-ratio <RATIO>
+          Maximum fraction of --threads assigned to extra BAM compression workers [default: 0.25]
+      --batch-records <BATCH_RECORDS>
+          Maximum number of BAM records held in one processing batch [default: 4096]
+      --batch-mib <BATCH_MIB>
+          Approximate maximum allocated BAM record memory per batch, in MiB [default: 64]
+      --primary
+          Keep only mapped primary alignments [aliases: primary-only]
+  -i, --input <INPUT>
+          Input BAM filename
+  -o, --output <OUTPUT>
+          Output BAM filename
+  -h, --help
+          Print help
+  -V, --version
+          Print version
 ```
 
-example:
+## Example
+A simple example:
 ```
 bamqvfilter -i input.bam -t 24 -q 10 -o output.bam;
 ```
-
+**If the `input.bam` is sorted then `output.bam` is also sorted.**
 
 
 ## Known limitation
-1. Non-primary reads (example below, without sequence and QV) will also be filtered.
-```
-07cfd828-eadc-4776-807b-86539c404dc9    272     chr1    5289755 0       18510S11M7D2M1D26M3D13M4D20M8D9M1D22M3D26M5D61M4D10M1I73M1I51M588S      *       0       0       *       *  qs:f:19.4802     du:f:37.6886    ns:i:188443     ts:i:10 mx:i:2  ch:i:2935       st:Z:2023-04-24T12:31:05.240+00:00      rn:i:39063      fn:Z:PAO89685_pass__2264ba8c_afee3a87_14.pod5       sm:f:-741.842   sd:f:0.00795814 sv:Z:pa dx:i:0  RG:Z:afee3a87585a5c58b78955ac2f01d681f6359a75_dna_r10.4.1_e8.2_400bps_sup@v5.0.0        NM:i:74 ms:i:345        AS:i:312   nn:i:0   de:f:0.140299   tp:A:S  cm:i:3  s1:i:45 MD:Z:11^GATGGAT2^A14C7A3^GTA9G3^ATTC15A4^ATTGATGA9^T0G16A4^TGA8G2G7A0A5^GAATG7G0A4G2G12A5A25^ATAC7A14G0G5T0C15A4C1T0G7G6A8A6A8G10A7C2G4A3A4G3       rl:i:1959
-```
-2. Only tested on ONT data, but in theory compatible with other sequencing platforms, such as PacBio sequencing.
-
-3. For large BAM file, large memory usage is expect, so make sure you have 1.5 * $(BAM_SIZE) memory to run `BamQVFilter`
+1. Only tested on ONT data, but in theory compatible with other sequencing platforms, such as PacBio sequencing.
 
 
 ## Validation script
-This tool is validated by a single-thread Python script in [here](./min_qv.py) using `pysam`. The validation script calculates the minimum read QV of a given BAM file and outputs the value to Standard output.
+This tool is validated by a single-thread Python script in [here](./check_output.py) using `pysam`. The validation script calculates the minimum read QV of a given BAM file and if the output is sorted.
 ```
 # build environment
 conda create -n valid-env python=3.7;
 conda activate valid-env;
-pip install pysam;
+pip install pysam tqdm;
 
 # validate BamQVFilter
-python min_qv.py test.bam;
+python check_output output.bam;
 ```
 
 ## Citation
@@ -74,4 +89,9 @@ Mencius, J., Chen, W., Zheng, Y. et al. Restoring flowcell type and basecaller c
 	pages = {4102},
 }
 ```
+
+## Issues & Contributions
+If you encounter any problems, bugs, or unexpected results while using MethQC, please open an issue in this repository.
+
+We welcome all forms of contributions — whether it’s reporting bugs, suggesting new features, improving documentation, or submitting pull requests.
 
